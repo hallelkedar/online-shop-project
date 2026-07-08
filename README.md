@@ -1,6 +1,32 @@
 # Shoes Shop Server
 ## Express server for online shop
 
+```
+Shoes-Shop-Server/
+│
+├── app.js
+├── data/
+│   ├── 
+│   ├── 
+│   ├──member_db.py
+├── routes/
+│   ├── 
+│   ├── 
+│   ├── 
+│   └── 
+│
+├── services/
+│   ├── 
+│   ├── 
+│   ├── 
+│   └── 
+│
+├── README.md
+├── package.json
+├── package-lock.json
+└── .gitignore
+```
+
 ### === App Info ===
 
 - Products
@@ -52,6 +78,7 @@ GET    | /orders                 | Shows [customerID] orders history
 ```
 
 ### === Run with ===
+
 Install dependencies:
 ```
 npm install

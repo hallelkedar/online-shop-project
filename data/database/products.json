@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Mechanical Keyboard",
+    "price": 349.90,
+    "stock": 25
+  },
+  {
+    "id": 2,
+    "name": "Ergonomic Gaming Mouse",
+    "price": 199.00,
+    "stock": 40
+  },
+  {
+    "id": 3,
+    "name": "27-Inch 4K Monitor",
+    "price": 1250.00,
+    "stock": 12
+  },
+  {
+    "id": 4,
+    "name": "Noise-Canceling Headphones",
+    "price": 599.00,
+    "stock": 18
+  },
+  {
+    "id": 5,
+    "name": "Full-Size RGB Mouse Pad",
+    "price": 89.90,
+    "stock": 50
+  }
+]
