@@ -25,7 +25,7 @@ export async function createItem(filepath, data) {
   const newList = [...items];
   newList.push({ ...data });
   if (items.length === newList.length) return false;
-  await saveToDB(filepath);
+  await saveToDB(filepath, items);
   return true;
 }
 
@@ -40,7 +40,7 @@ export async function updateItem(filepath, id, data, customers = false) {
 
   Object.assign(item, data);
 
-  await saveToDB(filepath);
+  await saveToDB(filepath, items);
   return true;
 }
 
@@ -53,7 +53,21 @@ export async function deleteItemFromCart(productId, customerId) {
   if (!item) return false
 
   const filteredCustomer = customer.cart.filter(item => item.productId !== productId)
-  
-  await saveToDB(customers);
+
+  if (customer.length === filteredCustomer.length) return false
+
+  await saveToDB('customers.json', customers);
   return true;
+}
+
+export async function updateQuantity(cart) {
+  const products = await getItems('products.json')
+  const modifyProduct = products.map(product => {
+    item = cart.find(item => item.productId === product.id)
+    if (item) return product.quantity -= item.quantity
+  })
+  if (products.length === modifyProduct.length) return false
+
+  await saveToDB('products.json', products)
+  return true
 }
