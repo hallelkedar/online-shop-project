@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 
 export async function getItems(filepath) {
-  const items = await fs.readFile(filepath, 'utf8');
+  const items = await fs.readFile(filepath, "utf8");
   return JSON.parse(items);
 }
 
@@ -11,10 +11,11 @@ export async function saveToDB(filepath, items) {
 
 export async function getItem(filepath, id, customers = false) {
   const items = await getItems(filepath);
+  let item;
   if (customers) {
-    const item = items.find((item) => item.customerId);
+    item = items.find((item) => item.customerId);
   } else {
-    const item = items.find((item) => item.id);
+    item = items.find((item) => item.id);
   }
   if (!item) return false;
   return item;
@@ -45,29 +46,33 @@ export async function updateItem(filepath, id, data, customers = false) {
 }
 
 export async function deleteItemFromCart(productId, customerId) {
-  const customers = await getitems('customers.json')
-  const customer = customers.find(customer => customer.customerId === customerId)
-  if (!customer) return false
-  
-  const item = customer.cart.find(item => item.productId === productId)
-  if (!item) return false
+  const customers = await getItems("./data/customers.json");
+  const customer = customers.find(
+    (customer) => customer.customerId === customerId,
+  );
+  if (!customer) return false;
 
-  const filteredCustomer = customer.cart.filter(item => item.productId !== productId)
+  const item = customer.cart.find((item) => item.productId === productId);
+  if (!item) return false;
 
-  if (customer.length === filteredCustomer.length) return false
+  const filteredCustomer = customer.cart.filter(
+    (item) => item.productId !== productId,
+  );
 
-  await saveToDB('customers.json', customers);
+  if (customer.length === filteredCustomer.length) return false;
+
+  await saveToDB("./data/customers.json", customers);
   return true;
 }
 
 export async function updateQuantity(cart) {
-  const products = await getItems('products.json')
-  const modifyProduct = products.map(product => {
-    item = cart.find(item => item.productId === product.id)
-    if (item) return product.quantity -= item.quantity
-  })
-  if (products.length === modifyProduct.length) return false
+  const products = await getItems("./data/products.json");
+  const modifyProduct = products.map((product) => {
+    item = cart.find((item) => item.productId === product.id);
+    if (item) return (product.quantity -= item.quantity);
+  });
+  if (products.length === modifyProduct.length) return false;
 
-  await saveToDB('products.json', products)
-  return true
+  await saveToDB("./data/products.json", products);
+  return true;
 }
