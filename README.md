@@ -2,7 +2,7 @@
 ## Express server for online shop
 
 ```
-Shoes-Shop-Server/
+Online-Shop-Server/
 │
 ├── app.js
 ├── data/
