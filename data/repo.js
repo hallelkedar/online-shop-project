@@ -13,9 +13,9 @@ export async function getItem(filepath, id, customers = false) {
   const items = await getItems(filepath);
   let item;
   if (customers) {
-    item = items.find((item) => item.customerId);
+    item = items.find((item) => item.customerId === id);
   } else {
-    item = items.find((item) => item.id);
+    item = items.find((item) => item.id === id);
   }
   if (!item) return false;
   return item;
@@ -32,10 +32,11 @@ export async function createItem(filepath, data) {
 
 export async function updateItem(filepath, id, data, customers = false) {
   const items = await getItems(filepath);
+  let item;
   if (customers) {
-    const item = items.find((item) => item.customerId);
+    item = items.find((item) => item.customerId === id);
   } else {
-    const item = items.find((item) => item.id);
+    item = items.find((item) => item.id === id);
   }
   if (!item) return false;
 
@@ -68,7 +69,7 @@ export async function deleteItemFromCart(productId, customerId) {
 export async function updateQuantity(cart) {
   const products = await getItems("./data/products.json");
   const modifyProduct = products.map((product) => {
-    item = cart.find((item) => item.productId === product.id);
+    const item = cart.find((item) => item.productId === product.id);
     if (item) return (product.quantity -= item.quantity);
   });
   if (products.length === modifyProduct.length) return false;
