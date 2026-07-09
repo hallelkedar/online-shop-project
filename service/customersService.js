@@ -5,13 +5,12 @@ import { FILEPATH as productsPATH} from "./productsService.js";
 export const customersPATH = "./data/customers.json";
 
 export async function getCustomerCart(id) {
-  const customer = await getItem(customersPATH, id);
+  const customer = await getItem(customersPATH, id, true);
   if (!customer) return false;
   return customer.cart;
 }
 
-export async function addItemToCart(data) {
-  const { productId, customerId, quantity } = data;
+export async function addItemToCart(productId, customerId, quantity) {
 
   const cart = await getCustomerCart(customerId);
   if (!cart) return { success: false, data: "not found" };
@@ -27,7 +26,7 @@ export async function addItemToCart(data) {
 }
 
 export async function getAccountBalance(customerId) {
-    const customer = await getItem(customersPATH, customerId)
+    const customer = await getItem(customersPATH, customerId, true)
     if (!customer) return false
     return customer.balance
 }   
