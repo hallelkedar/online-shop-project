@@ -14,19 +14,22 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post('/checkout', async (req, res) => {
-    try {
-        const {customerId} = req.body
-        if (!customerId) {
-            return res.status(400).json({success: false, message: "customerId is require field"})
-
-        }
-        const result = await makeOrder(customerId)
-        if (!result.success) {
-            return res.status(400).json(result)
-        }
-        return res.json(result)
-    } catch {
-        res.status(500).json({ success: false, message: "Iternal server error" });
+router.post("/checkout", async (req, res) => {
+  try {
+    const { customerId } = req.body;
+    if (!customerId) {
+      return res
+        .status(400)
+        .json({ success: false, message: "customerId is require field" });
     }
-})
+    const result = await makeOrder(customerId);
+    if (!result.success) {
+      return res.status(400).json(result);
+    }
+    return res.json(result);
+  } catch {
+    res.status(500).json({ success: false, message: "Iternal server error" });
+  }
+});
+
+export default router;
