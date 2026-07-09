@@ -76,3 +76,5 @@ router.delete("/items/:productId", async (req, res) => {
       .json({ success: false, message: "Iternal server error" });
   }
 });
+
+export default router;
