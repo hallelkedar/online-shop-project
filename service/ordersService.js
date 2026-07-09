@@ -2,7 +2,7 @@ import { getItem, getItems, updateQuantity } from "../data/repo.js";
 import { customersPATH as customersPath } from "./customersService.js";
 import { FILEPATH as productPath } from "./productsService.js";
 
-const FILEPATH = "orders.json";
+const FILEPATH = "./data/orders.json";
 
 export async function getOrders(customerId = null) {
   const orders = getItems(FILEPATH);

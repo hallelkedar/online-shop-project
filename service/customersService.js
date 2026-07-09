@@ -2,7 +2,7 @@ import { custom } from "zod";
 import { getItem, updateItem } from "../data/repo.js";
 import { FILEPATH as productsPATH} from "./productsService.js";
 
-export const customersPATH = "customers.json";
+export const customersPATH = "./data/customers.json";
 
 export async function getCustomerCart(id) {
   const customer = await getItem(customersPATH, id);
@@ -11,7 +11,7 @@ export async function getCustomerCart(id) {
 }
 
 export async function addItemToCart(data) {
-  const { productId, customerId, quantity };
+  const { productId, customerId, quantity } = data;
 
   const cart = await getCustomerCart(customerId);
   if (!cart) return { success: false, data: "not found" };

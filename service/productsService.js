@@ -1,6 +1,6 @@
 import { getItems, getItem } from "../data/repo.js";
 
-export const FILEPATH = "../data/products.json";
+export const FILEPATH = "./data/products.json";
 
 export async function getProducts(
   inStock = false,
