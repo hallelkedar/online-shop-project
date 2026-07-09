@@ -1,7 +1,7 @@
-import fs from "fs";
+import fs from "fs/promises";
 
 export async function getItems(filepath) {
-  const items = await fs.readFile(filepath);
+  const items = await fs.readFile(filepath, 'utf8');
   return JSON.parse(items);
 }
 
