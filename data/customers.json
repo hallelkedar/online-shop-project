@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "customerId": "abc123",
+    "balance": 250.75,
+    "cart": [],
+    "createdAt": "2025-11-14T08:30:00Z"
+  },
+  {
+    "customerId": "abc134",
+    "balance": 15.00,
+    "cart": [],
+    "createdAt": "2026-03-01T14:15:22Z"
+  },
+  {
+    "customerId": "abc345",
+    "balance": 1105.40,
+    "cart": [],
+    "createdAt": "2026-06-20T19:02:11Z"
+  }
+]

@@ -44,17 +44,16 @@ export async function updateItem(filepath, id, data, customers = false) {
   return true;
 }
 
-export async function deleteItem(filepath, id, data, customers = false) {
-  const items = await getItems(filepath);
-  if (customers) {
-    const filteredItems = items.filter((item) => item.customerId !== id);
-  } else {
-    const filteredItems = items.filter((item) => item.id !== id);
-  }
+export async function deleteItemFromCart(productId, customerId) {
+  const customers = await getitems('customers.json')
+  const customer = customers.find(customer => customer.customerId === customerId)
+  if (!customer) return false
   
+  const item = customer.cart.find(item => item.productId === productId)
+  if (!item) return false
 
-  if (items.length === filteredItems) return false;
-
-  await saveToDB(filepath);
+  const filteredCustomer = customer.cart.filter(item => item.productId !== productId)
+  
+  await saveToDB(customers);
   return true;
 }
