@@ -30,16 +30,19 @@ router.get("/", async (req, res) => {
 
 router.post("/items", async (req, res) => {
   try {
-    const validation = addItemValidation.safeParse(req.body);
-    if (!validation.success) {
+    const { customerId, productId, quantity} = req.body
+    const parsedProductId = productId || isNaN(productId) ? Number(productId) : null
+    const parsedQuantity = quantity || isNaN(quantity) ? Number(quantity) : null
+    
+    if (!customerId | !parsedProductId | !parsedQuantity) {
       return res.status(400).json({
         success: false,
-        massage: validation.error.issues.message,
+        massage: 'Bad request',
       });
     }
-    const result = await addItemToCart(req.body);
+    const result = await addItemToCart(parsedProductId, customerId, parsedQuantity);
     if (!result.success) {
-      if (!result.data === "not found") {
+      if (result.data === "not found") {
         return res
           .status(404)
           .json({ success: false, massage: "Product or Customer not found" });
