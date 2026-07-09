@@ -33,7 +33,7 @@ router.post("/items", async (req, res) => {
     const parsedProductId = productId || isNaN(productId) ? Number(productId) : null
     const parsedQuantity = quantity || isNaN(quantity) ? Number(quantity) : null
     
-    if (!customerId | !parsedProductId | !parsedQuantity) {
+    if (!customerId || !parsedProductId || !parsedQuantity) {
       return res.status(400).json({
         success: false,
         massage: 'Bad request',
@@ -50,6 +50,8 @@ router.post("/items", async (req, res) => {
         .status(400)
         .json({ success: false, massage: "Product is out of stock" });
       return res.status(201).json({ result });
+    };
+  return res.status(201).json({ result });
     }
   } catch (error) {
     console.error(error);
