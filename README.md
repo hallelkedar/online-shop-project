@@ -6,9 +6,11 @@ Shoes-Shop-Server/
 │
 ├── app.js
 ├── data/
-│   ├── 
-│   ├── 
-│   ├──member_db.py
+│   ├── customers.json
+│   ├── customers.json
+│   ├──customers.json
+│   └── repo.js
+│
 ├── routes/
 │   ├── 
 │   ├── 
