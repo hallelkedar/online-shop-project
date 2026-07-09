@@ -17,7 +17,8 @@ router.get("/balance", async (req, res) => {
         .json({ success: false, message: "Customer not found" });
     }
     return res.json({ success: true, data: balance });
-  } catch {
+  } catch (error) {
+    console.error(error);
     return res
       .status(500)
       .json({ success: false, message: "Iternal server error" });

@@ -8,8 +8,11 @@ router.get("/", async (req, res) => {
     const { inStock, maxPrice, search } = req.query;
     const products = await getProducts(inStock, maxPrice, search);
     res.json({ success: true, data: products });
-  } catch {
-    res.status(500).json({ success: false, message: "Internal server error" });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Iternal server error" });
   }
 });
 

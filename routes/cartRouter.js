@@ -20,7 +20,8 @@ router.get("/", async (req, res) => {
         .json({ success: false, message: "Customer not found." });
     }
     return res.json({ success: true, data: cart });
-  } catch {
+  } catch (error) {
+    console.error(error);
     return res
       .status(500)
       .json({ success: false, message: "Iternal server error" });
@@ -48,7 +49,8 @@ router.post("/items", async (req, res) => {
         .json({ success: false, massage: "Product is out of stock" });
       return res.status(201).json({ result });
     }
-  } catch {
+  } catch (error) {
+    console.error(error);
     return res
       .status(500)
       .json({ success: false, message: "Iternal server error" });
@@ -70,7 +72,8 @@ router.delete("/items/:productId", async (req, res) => {
         .json({ success: false, message: "Product or Customer not found" });
     }
     return res.json({ success: true, data: {} });
-  } catch {
+  } catch (error) {
+    console.error(error);
     return res
       .status(500)
       .json({ success: false, message: "Iternal server error" });
