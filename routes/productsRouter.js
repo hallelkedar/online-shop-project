@@ -6,13 +6,20 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const { inStock, maxPrice, search } = req.query;
-    const products = await getProducts(inStock, maxPrice, search);
+    
+    const parsedInStock = inStock === "true"
+
+    const parsedMaxPrice = maxPrice && !isNaN(maxPrice) ? Number(maxPrice) : null
+    
+    const products = await getProducts(parsedInStock, parsedMaxPrice, search);
+    
     res.json({ success: true, data: products });
-  } catch (error) {
+  
+} catch (error) {
     console.error(error);
     return res
       .status(500)
-      .json({ success: false, message: "Iternal server error" });
+      .json({ success: false, message: "Internal server error" });
   }
 });
 

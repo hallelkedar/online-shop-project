@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const { customerId } = req.params;
+    const { customerId } = req.query;
     if (!customerId) {
       return res
         .status(400)
@@ -34,7 +34,7 @@ router.post("/items", async (req, res) => {
     if (!validation.success) {
       return res.status(400).json({
         success: false,
-        massage: "productId, customerId and quantity are required",
+        massage: validation.error.issues.message,
       });
     }
     const result = await addItemToCart(req.body);
