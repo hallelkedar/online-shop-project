@@ -1,5 +1,4 @@
 import express from "express";
-import addItemValidation from "../utils/cartValitation.js";
 import { getCustomerCart, addItemToCart } from "../service/customersService.js";
 import { deleteItemFromCart } from "../data/repo.js";
 

@@ -1,4 +1,4 @@
-# Shoes Shop Server
+# Online Shop Server
 ## Express server for online shop
 
 ```
@@ -12,16 +12,16 @@ Shoes-Shop-Server/
 │   └── repo.js
 │
 ├── routes/
-│   ├── 
-│   ├── 
-│   ├── 
-│   └── 
+│   ├── accountRouter.js
+│   ├── cartRouter.js
+│   ├── ordersRouter.js
+│   └── productsRouter.js
 │
 ├── services/
-│   ├── 
-│   ├── 
-│   ├── 
-│   └── 
+│   ├── customersService.js
+│   ├── ordersService.js
+│   └── productsService.js
+│
 │
 ├── README.md
 ├── package.json
@@ -29,7 +29,7 @@ Shoes-Shop-Server/
 └── .gitignore
 ```
 
-### === App Info ===
+### === App Contains ===
 
 - Products
 - Customers
